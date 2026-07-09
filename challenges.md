@@ -49,6 +49,8 @@ Course: Computer Science
 Average: 82.5
 Grade: A
 Status: Passed
+
+
 Part 2
 Create another class called
 
@@ -161,5 +163,5 @@ Classes
 
 Object interaction (one class using instances of another)
 
-This is about the difficulty of an early technical interview or a solid coding assessment. Try to solve it on your own first. If you get stuck, share your code rather than asking for the full solution, and I'll help you debug it step by step.
-
+This is about the difficulty of an early technical interview or a solid coding assessment. Try to solve it on your own first. If you 
+get stuck, share your code rather than asking for the full solution, and I'll help you debug it step by step.

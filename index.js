@@ -53,11 +53,27 @@ Student.prototype.displayInfo = function(studNam){
    }
 }
 
-
-
-
 let student1 = new Student('Philip', 23, 'Engineering', [34, 67, 86,100, 55])
 let student2 = new Student('Timothy', 23, 'Computer Science', [34, 27, 86,10, 55])
-// student2.addScore(100)
-console.log(student2.displayInfo('Timothy'))
+student2.addScore(50)
+// console.log(student2.displayInfo('Timothy'))
 // console.log(studentReg)
+
+
+class School {
+    constructor(schooName){
+        this.schooName = schooName
+        this.studen =[]
+    }
+    addStudents(student){
+       for(let stud of studentReg){
+        if(stud.Name === student){
+            (this.studen).push(stud)
+        }
+       }
+    }
+}
+let school = new School('path-finders')
+school.addStudents('Philip')
+school.addStudents('Timothy')
+console.log(school)
