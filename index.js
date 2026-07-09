@@ -86,6 +86,13 @@ class School {
         }
        }
     }
+    findStudent(name){
+       this.studen.forEach((nam, indx, arr) => {
+        if(arr[indx].Name === name){
+             console.log(arr[indx])
+        }
+       })
+    }
 }
 let school = new School('path-finders')
 
@@ -93,4 +100,5 @@ school.removeStudent('Timothy')
 school.addStudents('Philip')
 school.addStudents('Joy')
 school.addStudents('Hwee')
-console.log(school)
+school.findStudent('Joy')
+// console.log(school)
