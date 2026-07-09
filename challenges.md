@@ -1,8 +1,4 @@
 
-generate an intermediate js question for me to solve covering from the basic to the topic classes
-
-Since you've covered variables, functions, arrays, objects, array methods, prototypes, constructors, and classes, here's an intermediate JavaScript challenge that combines most of those concepts into one problem.
-
 JavaScript Challenge: Student Management System
 Create a simple student management system using classes.
 
