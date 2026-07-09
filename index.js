@@ -45,17 +45,17 @@ Student.prototype.hasPassed = function(){
     }
 }
 Student.prototype.displayInfo = function(studNam){
-   studentReg.forEach((val, indx, arr) => {
-    if(arr[indx].Name === studNam){
-        console.log(arr[indx])
+   studentReg.forEach((val) => {
+    if(val.Name === studNam){
+        console.log(val)
     }
    })
 }
 
 let student1 = new Student('Philip', 23, 'Engineering', [34, 67, 86,100, 55])
 let student2 = new Student('Timothy', 23, 'Computer Science', [34, 27, 86,10, 55])
-let student3 = new Student('Joy', 23, 'Computer Science', [34, 27, 86,10, 55])
-let student4 = new Student('Hwee', 23, 'Computer Science', [34, 27, 86,10, 55])
+let student3 = new Student('Joy', 23, 'Computer Science', [100, 87, 86,90, 55])
+let student4 = new Student('Hwee', 23, 'Computer Science', [100, 87, 86,90, 55])
 student2.addScore(50)
 // student2.displayInfo('Timothy')
 // console.log(studentReg)
@@ -87,11 +87,20 @@ class School {
        }
     }
     findStudent(name){
-       this.studen.forEach((nam, indx, arr) => {
-        if(arr[indx].Name === name){
-             console.log(arr[indx])
+    return this.studen.find(student => {
+        if(student.Name === name){
+            return student
         }
-       })
+    })
+    }
+
+    topStudent(){
+      let maxAverage = Math.max(...this.studen.map(student => student.Average))
+      this.studen.forEach(student =>{
+        if(student.Average === maxAverage){
+            console.log(student)
+        }
+      })
     }
 }
 let school = new School('path-finders')
@@ -100,5 +109,5 @@ school.removeStudent('Timothy')
 school.addStudents('Philip')
 school.addStudents('Joy')
 school.addStudents('Hwee')
-school.findStudent('Joy')
+school.topStudent()
 // console.log(school)
