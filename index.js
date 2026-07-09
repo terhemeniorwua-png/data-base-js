@@ -9,7 +9,7 @@ class Student{
         this.Scores = scores
         this.Average = this.getAverage()
         this.Grade = this.getGrade()
-        this.hasPassed = hasPassed()
+        this.Passed = this.hasPassed()
 
         studentReg.push(this)
     }
@@ -21,17 +21,21 @@ class Student{
     }
 Student.prototype.getGrade = function(){
         if(this.Average <= 40){
-           return this.Grade = 'F'
+           return 'F'
         } else if(this.Average <= 59){
-           return this.Grade = 'D'
+           return 'D'
         } else if(this.Average <= 69){
-           return this.Grade = 'C'
+           return 'C'
         } else{
-           return this.Grade ='A'
+           return'A'
         }
     }
 Student.prototype.hasPassed = function(){
-    
+    if(this.Average >= 50){
+        return true
+    } else{
+        return false
+    }
 }
 
 
