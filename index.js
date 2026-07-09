@@ -8,7 +8,8 @@ class Student{
         this.Course = course
         this.Scores = scores
         this.Average = this.getAverage()
-
+        this.Grade = this.getGrade()
+        this.hasPassed = hasPassed()
 
         studentReg.push(this)
     }
@@ -18,17 +19,21 @@ class Student{
         .reduce((total, score) => total += score)/(this.Scores).length
         return avr
     }
-    Student.prototype.getGrade = function(){
+Student.prototype.getGrade = function(){
         if(this.Average <= 40){
-            this.Grade = 'F'
+           return this.Grade = 'F'
         } else if(this.Average <= 59){
-            this.Grade = 'D'
+           return this.Grade = 'D'
         } else if(this.Average <= 69){
-            this.Grade = 'C'
+           return this.Grade = 'C'
         } else{
-            this.Grade ='A'
+           return this.Grade ='A'
         }
     }
+Student.prototype.hasPassed = function(){
+    
+}
+
 
 
 let student1 = new Student('Philip', 23, 'Engineering', [34, 67, 86,100, 55])
