@@ -53,7 +53,7 @@ Student.prototype.displayInfo = function(studNam){
 }
 
 let student1 = new Student('Philip', 23, 'Engineering', [34, 67, 86,100, 55])
-let student2 = new Student('Timothy', 23, 'Computer Science', [34, 27, 86,10, 55])
+let student2 = new Student('Timothy', 23, 'Computer Science', [34, 27, 16,10, 35])
 let student3 = new Student('Joy', 23, 'Computer Science', [100, 87, 86,90, 55])
 let student4 = new Student('Hwee', 23, 'Computer Science', [100, 87, 86,90, 55])
 student2.addScore(50)
@@ -102,12 +102,24 @@ class School {
         }
       })
     }
+
+    getPassedStudents(){
+        return this.studen.filter(student => student.Passed === true)
+    }
+
+    getStudentsByCourse(course){
+        return this.studen.filter(student => student.Course === course)
+    }
 }
 let school = new School('path-finders')
 
-school.removeStudent('Timothy')
+school.addStudents('Timothy')
 school.addStudents('Philip')
 school.addStudents('Joy')
 school.addStudents('Hwee')
-school.topStudent()
-// console.log(school)
+// school.topStudent()
+// console.log(school.getPassedStudents())
+console.log(school.getStudentsByCourse('Computer Science'))
+
+console.log('==========================')
+console.log(school)
