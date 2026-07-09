@@ -45,19 +45,25 @@ Student.prototype.hasPassed = function(){
     }
 }
 Student.prototype.displayInfo = function(studNam){
-   for(let i = 0; i<studentReg.length; i++){
-    // if(!studNam) return;
-    if(studentReg[i].Name === studNam){
-        return studentReg[i]
+   studentReg.forEach((val, indx, arr) => {
+    if(arr[indx].Name === studNam){
+        console.log(arr[indx])
     }
-   }
+   })
 }
 
 let student1 = new Student('Philip', 23, 'Engineering', [34, 67, 86,100, 55])
 let student2 = new Student('Timothy', 23, 'Computer Science', [34, 27, 86,10, 55])
+let student3 = new Student('Joy', 23, 'Computer Science', [34, 27, 86,10, 55])
+let student4 = new Student('Hwee', 23, 'Computer Science', [34, 27, 86,10, 55])
 student2.addScore(50)
-// console.log(student2.displayInfo('Timothy'))
+// student2.displayInfo('Timothy')
 // console.log(studentReg)
+
+
+
+
+
 
 
 class School {
@@ -72,8 +78,19 @@ class School {
         }
        }
     }
+
+    removeStudent(stuName){
+         for(let stud of this.studen){
+        if(stud.Name === stuName){
+            (this.studen).pop(stuName)
+        }
+       }
+    }
 }
 let school = new School('path-finders')
+
+school.removeStudent('Timothy')
 school.addStudents('Philip')
-school.addStudents('Timothy')
+school.addStudents('Joy')
+school.addStudents('Hwee')
 console.log(school)
