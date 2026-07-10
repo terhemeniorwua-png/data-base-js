@@ -23,7 +23,7 @@ Student.prototype.addScore = function(addedScore){
 
 }
  Student.prototype.getAverage = function(){
-        let avr = (this.scores).map(score => score)
+        let avr = (this.scores)
         .reduce((total, score) => total += score)/(this.scores).length
         return avr
     }
