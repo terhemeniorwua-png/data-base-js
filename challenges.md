@@ -95,6 +95,10 @@ Returns every student taking that course.
 Example
 
 school.getStudentsByCourse("Computer Science");
+
+
+
+
 schoolReport()
 Return something similar to
 
@@ -107,6 +111,10 @@ Passed: 4
 Failed: 1
 
 Top Student: Philip (92.5)
+
+
+
+
 Sample Data
 const s1 = new Student("Philip", 25, "Computer Science", [80, 90, 75]);
 const s2 = new Student("John", 20, "Engineering", [45, 55, 60]);
@@ -119,6 +127,10 @@ school.addStudent(s1);
 school.addStudent(s2);
 school.addStudent(s3);
 school.addStudent(s4);
+
+
+
+
 Bonus Challenges
 If you finish early, try these without looking up the answers:
 
