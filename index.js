@@ -255,12 +255,13 @@ BankAccount.prototype.accountInfo = function(){
 
 let user1 = new BankAccount('Philip', 1234, 2000)
 let user2 = new BankAccount('Tom', 2222, 2000)
-let user3 = new BankAccount('Tom', 5222, 2000)
-user1.deposit(2000)
+let user3 = new BankAccount('Tomi', 5222, 2000)
+user1.deposit(12000)
 user2.changePin(2222, 2323)
 user2.changePin(2323, 1111)
+user1.changePin(1234, 1111)
 user2.changePin(1111, 9089)
-// user1.withdraw(3000, 1234)
+user1.withdraw(7000, 1111)
 // user1.transfer(user2, 2500, 1234)
 // console.log(user2.checkBalance(9089))
 // user2.accountInfo()
@@ -307,6 +308,11 @@ Bank.prototype.totalMoney = function(){
     let totalMon = this.accounts.reduce((total, val) => total += val.balance, 0)
     return totalMon
 }
+Bank.prototype.richestCustomer = function(){
+    let richestUser = Math.max(...this.accounts.map(acc =>acc.balance))
+   return this.accounts.filter(acc => acc.balance === richestUser)
+    
+}
 
 
 const bank = new Bank('First Bank')
@@ -314,8 +320,9 @@ bank.openAccount(user1)
 bank.openAccount(user2)
 bank.openAccount(user3)
 // bank.closeAccount(user2)
-console.log(bank.totalMoney())
-console.log(bank.accounts)
+console.log(bank.richestCustomer())
+// console.log(bank.totalMoney())
+// console.log(bank.accounts)
 
 
 
