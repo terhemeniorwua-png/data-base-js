@@ -178,25 +178,48 @@ BankAccount.prototype.generateAccNum = function(){
    this.accNum =  Math.floor(1000000000 + Math.random() * 9999999999)
 }
 BankAccount.prototype.deposit = function(amount){
+
     try{
         if(amount <= 0){
-             console.log('Amount cannot be equal or less than zero')
+             this.message ='Amount must be greater than zero'
              return;
         }
     } catch(e){
          e
  }
-        this.balance += amount
+ this.balance += amount
 }
 
 BankAccount.prototype.withdraw = function(amount, pin){
-    
+    try{
+         if(this.pin !== pin){
+            this.message =` Incorrect pin` 
+        }else if(amount <= 0){
+             this.message ='Amount must be greater than zero'
+             return;
+        } else if(this.balance < amount){
+            this.message = `Insufficient balance`
+        }
+    } catch(e){
+         e
+ } 
 }
+
+BankAccount.prototype.transfer = function(receiver, amount, pin){
+   let recepient = 
+   
+    if(!receiver) {
+        this.message =`Receipient not found` 
+        return;}
+} 
 
 
 
 let user1 = new BankAccount('Philip', 1234, 2000)
-user1.deposit(-100)
+let user2 = new BankAccount('Tom', 2222, 2000)
+user1.deposit(2000)
+// user1.withdraw(3000, 1234)
+user1.transfer()
 console.log(user1)
 
 
