@@ -80,6 +80,8 @@ class School {
     }
     
     addStudents(student){
+        let search = this.students.find(studentName => studentName.name === student)
+        if(search)return;
        for(let stud of studentReg){
         if(stud.name === student){
             (this.students).push(stud)
@@ -253,6 +255,7 @@ BankAccount.prototype.accountInfo = function(){
 
 let user1 = new BankAccount('Philip', 1234, 2000)
 let user2 = new BankAccount('Tom', 2222, 2000)
+let user3 = new BankAccount('Tom', 5222, 2000)
 user1.deposit(2000)
 user2.changePin(2222, 2323)
 user2.changePin(2323, 1111)
@@ -260,8 +263,37 @@ user2.changePin(1111, 9089)
 // user1.withdraw(3000, 1234)
 // user1.transfer(user2, 2500, 1234)
 // console.log(user2.checkBalance(9089))
-user2.accountInfo()
+// user2.accountInfo()
 // console.log(user1, user2)
+
+
+
+class Bank{
+    
+    constructor(bankName){
+        this.bankName = bankName
+        this.accounts = []
+    }
+    openAccount(account){
+        let user = this.accounts.find(acc => acc.name === account.name)
+        if(user){
+            console.log(`Username already taken`)
+            return;
+        }
+        else{
+            this.accounts.push(account)
+            this.message = `Welcome to ${this.bankName}`
+        }
+    }
+}
+
+
+
+const bank = new Bank('First Bank')
+bank.openAccount(user1)
+bank.openAccount(user2)
+bank.openAccount(user3)
+console.log(bank.accounts)
 
 
 
