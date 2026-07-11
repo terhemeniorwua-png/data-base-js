@@ -277,12 +277,24 @@ class Bank{
     openAccount(account){
         let user = this.accounts.find(acc => acc.name === account.name)
         if(user){
-            console.log(`Username already taken`)
+            console.log(`Account Number already taken`)
             return;
         }
         else{
             this.accounts.push(account)
             this.message = `Welcome to ${this.bankName}`
+        }
+    }
+}
+Bank.prototype.closeAccount = function(accountNumber){
+    // let account = this.accounts.find(acc => acc.name === accountNumber)
+    // if(account){
+    //     delete account
+    // }
+    for(let i=0; i<this.accounts.length; i++){
+        if(this.accounts[i] === accountNumber ){
+            delete this.accounts.splice(i, 1)
+            return;
         }
     }
 }
@@ -293,7 +305,9 @@ const bank = new Bank('First Bank')
 bank.openAccount(user1)
 bank.openAccount(user2)
 bank.openAccount(user3)
+// bank.closeAccount(user2)
 console.log(bank.accounts)
+
 
 
 
