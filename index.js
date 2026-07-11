@@ -233,6 +233,22 @@ BankAccount.prototype.changePin =function(oldPin, newPin){
     }
 }
 
+BankAccount.prototype.checkBalance = function(pin){
+      if(this.pin !== pin){
+        this.message =`Incorrect pin`
+        return;
+    } 
+    let res = `Your account balance on ${Date()} is: $${this.balance}`
+    return res
+}
+BankAccount.prototype.accountInfo = function(){
+    let user = `
+    Name: ${this.name}
+    Account Number: ${this.accNum}
+    Balance: N${this.balance}`
+    console.table(user)
+}
+
 
 
 let user1 = new BankAccount('Philip', 1234, 2000)
@@ -243,7 +259,11 @@ user2.changePin(2323, 1111)
 user2.changePin(1111, 9089)
 // user1.withdraw(3000, 1234)
 // user1.transfer(user2, 2500, 1234)
-console.log(user1, user2)
+// console.log(user2.checkBalance(9089))
+user2.accountInfo()
+// console.log(user1, user2)
+
+
 
 
 
