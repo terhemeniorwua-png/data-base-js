@@ -188,29 +188,38 @@ BankAccount.prototype.deposit = function(amount){
          e
  }
  this.balance += amount
+ this.message = `${amount} successfully deposited to your account`
 }
 
 BankAccount.prototype.withdraw = function(amount, pin){
     try{
          if(this.pin !== pin){
             this.message =` Incorrect pin` 
+            return;
         }else if(amount <= 0){
              this.message ='Amount must be greater than zero'
              return;
         } else if(this.balance < amount){
             this.message = `Insufficient balance`
+            return;
         }
     } catch(e){
          e
  } 
+ this.balance -= amount
+ this.message = `${amount} successfully withdrawn from your account`
 }
 
 BankAccount.prototype.transfer = function(receiver, amount, pin){
-   let recepient = 
-   
-    if(!receiver) {
-        this.message =`Receipient not found` 
+
+   if(!receiver) return;
+    if(this.pin !== pin) {
+        this.message =`Invalid pin` 
         return;}
+    this.withdraw(amount, pin)
+    this.message= `You have successully transferred ${amount} to ${receiver}`
+    receiver.deposit(amount)
+    receiver.message=  `You have received ${amount} from ${this.name}`
 } 
 
 
@@ -219,8 +228,8 @@ let user1 = new BankAccount('Philip', 1234, 2000)
 let user2 = new BankAccount('Tom', 2222, 2000)
 user1.deposit(2000)
 // user1.withdraw(3000, 1234)
-user1.transfer()
-console.log(user1)
+// user1.transfer(user2, 2500, 1234)
+console.log(user1, user2)
 
 
 
