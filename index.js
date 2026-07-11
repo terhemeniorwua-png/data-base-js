@@ -221,12 +221,26 @@ BankAccount.prototype.transfer = function(receiver, amount, pin){
     receiver.deposit(amount)
     receiver.message=  `You have received ${amount} from ${this.name}`
 } 
+BankAccount.prototype.changePin =function(oldPin, newPin){
+    let resetPin = String(newPin)
+    if(this.pin !== oldPin){
+        this.message =`Incorrect pin`
+        return;
+    } else if(resetPin.length !== 4){
+        this.message = `Pin must be exactly four digits`
+    } else{
+        this.pin = newPin
+    }
+}
 
 
 
 let user1 = new BankAccount('Philip', 1234, 2000)
 let user2 = new BankAccount('Tom', 2222, 2000)
 user1.deposit(2000)
+user2.changePin(2222, 2323)
+user2.changePin(2323, 1111)
+user2.changePin(1111, 9089)
 // user1.withdraw(3000, 1234)
 // user1.transfer(user2, 2500, 1234)
 console.log(user1, user2)
