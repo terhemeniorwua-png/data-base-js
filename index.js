@@ -1,4 +1,7 @@
 
+//  A SCHOOL ADMINISTRATION SYSTEM
+
+
 let studentReg = [];
 
 class Student{
@@ -61,9 +64,10 @@ let student1 = new Student('Philip', 23, 'Engineering', [34, 67, 86,100, 55])
 let student2 = new Student('Timothy', 23, 'Computer Science', [34, 27, 16,10, 35])
 let student3 = new Student('Joy', 23, 'Computer Science', [90, 87, 86,90, 55])
 let student4 = new Student('Hwee', 23, 'Computer Science', [100, 87, 86,90, 55])
+let student5 = new Student('Hwee', 53, 'Computer Science', [100, 87, 86,90, 55])
 student2.addScore(100)
 // student2.displayInfo('Timothy')
-console.log(studentReg)
+// console.log(studentReg)
 
 
 
@@ -72,7 +76,9 @@ class School {
     constructor(schooName){
         this.schooName = schooName
         this.students =[]
+        // this.preventDuplicateNames()
     }
+    
     addStudents(student){
        for(let stud of studentReg){
         if(stud.name === student){
@@ -80,6 +86,8 @@ class School {
         }
        }
     }
+
+   
 
     removeStudent(stuName){
          for(let stud of this.students){
@@ -137,10 +145,12 @@ school.addStudents('Timothy')
 school.addStudents('Philip')
 school.addStudents('Joy')
 school.addStudents('Hwee')
+school.addStudents('Hwee')
 // school.topStudent()
 // console.log(school.getPassedStudents())
 // console.log(school.getStudentsByCourse('Computer Science'))
 // console.log(school.schoolReport())
+// console.log(school.preventDuplicateNames())
 
 // console.log('==========================')
 // console.log(school)
@@ -148,9 +158,30 @@ school.addStudents('Hwee')
 
 
 
+// =========================================================
 
 
 
+// A BANKING SYSTEM
+
+
+
+class BankAccount{
+    constructor(name, pin, balance){
+        this.name = name
+        this.pin = pin
+        this.balance = balance
+    }
+}
+BankAccount.prototype.generateAccNum = function(){
+    Math.floor(1000000000 + Math.reduce() * 9999999999)
+}
+
+
+
+let user1 = new BankAccount('Philip', 1234, 2000)
+
+console.log(user1)
 
 
 
