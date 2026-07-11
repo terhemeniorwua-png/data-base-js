@@ -245,6 +245,7 @@ deposit(amount)
 Amount cannot be zero or negative.
 Add money to balance.
 Return the new balance.
+
 withdraw(amount, pin)
 
 Rules

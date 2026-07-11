@@ -171,16 +171,32 @@ class BankAccount{
         this.name = name
         this.pin = pin
         this.balance = balance
+        this.generateAccNum()
     }
 }
 BankAccount.prototype.generateAccNum = function(){
-    Math.floor(1000000000 + Math.reduce() * 9999999999)
+   this.accNum =  Math.floor(1000000000 + Math.random() * 9999999999)
+}
+BankAccount.prototype.deposit = function(amount){
+    try{
+        if(amount <= 0){
+             console.log('Amount cannot be equal or less than zero')
+             return;
+        }
+    } catch(e){
+         e
+ }
+        this.balance += amount
+}
+
+BankAccount.prototype.withdraw = function(amount, pin){
+    
 }
 
 
 
 let user1 = new BankAccount('Philip', 1234, 2000)
-
+user1.deposit(-100)
 console.log(user1)
 
 
