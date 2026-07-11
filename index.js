@@ -298,7 +298,15 @@ Bank.prototype.closeAccount = function(accountNumber){
         }
     }
 }
-
+Bank.prototype.findAccount = function(accountNumber){
+    let account = this.accounts.find(acc => acc.name === accountNumber)
+    if(!account) return;
+    return account
+}
+Bank.prototype.totalMoney = function(){
+    let totalMon = this.accounts.reduce((total, val) => total += val.balance, 0)
+    return totalMon
+}
 
 
 const bank = new Bank('First Bank')
@@ -306,6 +314,7 @@ bank.openAccount(user1)
 bank.openAccount(user2)
 bank.openAccount(user3)
 // bank.closeAccount(user2)
+console.log(bank.totalMoney())
 console.log(bank.accounts)
 
 
