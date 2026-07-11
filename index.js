@@ -311,8 +311,12 @@ Bank.prototype.totalMoney = function(){
 Bank.prototype.richestCustomer = function(){
     let richestUser = Math.max(...this.accounts.map(acc =>acc.balance))
    return this.accounts.filter(acc => acc.balance === richestUser)
-    
 }
+Bank.prototype.customersWithMoreThan = function(amount){
+    return this.accounts.filter(acc => acc.balance >amount)
+
+}
+
 
 
 const bank = new Bank('First Bank')
@@ -320,11 +324,10 @@ bank.openAccount(user1)
 bank.openAccount(user2)
 bank.openAccount(user3)
 // bank.closeAccount(user2)
-console.log(bank.richestCustomer())
+// console.log(bank.richestCustomer())
 // console.log(bank.totalMoney())
 // console.log(bank.accounts)
-
-
+console.log(bank.customersWithMoreThan(1000))
 
 
 
