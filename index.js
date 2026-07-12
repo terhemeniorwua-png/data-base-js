@@ -367,18 +367,22 @@ Store.prototype.addItem = function(name, price, quantity){
     this.items.push(object)
 }
 Store.prototype.totalValue = function(){
-    let res = this.items.reduce((total, val) => total += (val.quantity * val.price))
+    let res = this.items.reduce((total, val) => total += (val.quantity * val.price), 0)
     return res
 }
-
+Store.prototype.filterExpensive = function(minPrice){
+    let expensiveItems = this.items.filter(item => item.price >= minPrice)
+    return expensiveItems.map(item => item.name)
+}
 
 
 
 let store = new Store()
 store.addItem('Bread', 5000, 3)
 store.addItem('Chair', 15000, 2)
-store.addItem('Mope', 1000, 5)
-console.log(store.totalValue())
+store.addItem('Mope', 1000, 6)
+console.log(store.filterExpensive(4000))
+// console.log(store.totalValue())
 // console.log(store.items)
 
 
