@@ -327,11 +327,12 @@ Bank.prototype.sortAccounts = function(){
     return sort
 }
 Bank.prototype.bankReport = function(){
+    let richest = this.accounts.find(acc => this.richestCustomer())
     return `
     My Bank: ${this.bankName}
     Customers: ${this.accounts.length}
     Total Money: ${this.totalMoney()}
-    Richest Customer: ${this.richestCustomer().name}
+    Richest Customer: ${richest.name} (${richest.balance})
     `
 }
 
@@ -346,7 +347,7 @@ bank.openAccount(user3)
 // console.log(bank.accounts)
 // console.log(bank.customersWithMoreThan(5000))
 // console.log(bank.sortAccounts())
-// console.log(bank.bankReport())
+console.log(bank.bankReport())
 
 
 // ===========================================================
@@ -374,19 +375,33 @@ Store.prototype.filterExpensive = function(minPrice){
     let expensiveItems = this.items.filter(item => item.price >= minPrice)
     return expensiveItems.map(item => item.name)
 }
-
+Store.prototype.applyDiscount = function(percent){
+    return this.items.map(item => {
+        let per = item.price -(item.price * (percent/100))
+        return {
+            ...this,
+            discount:per
+        }
+    }
+)
+}
+Store.prototype.mostCommonWord = function(){
+    let names = this.items.map(name => name.name)
+    return names
+}
 
 
 let store = new Store()
 store.addItem('Bread', 5000, 3)
+store.addItem('Bread', 5000, 3)
+store.addItem('Bread', 5000, 3)
 store.addItem('Chair', 15000, 2)
 store.addItem('Mope', 1000, 6)
-console.log(store.filterExpensive(4000))
+// console.log(store.applyDiscount(10))
+// console.log(store.filterExpensive(4000))
 // console.log(store.totalValue())
+// console.log(store.mostCommonWord())
 // console.log(store.items)
-
-
-
 
 
 
