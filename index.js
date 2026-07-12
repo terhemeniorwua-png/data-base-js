@@ -320,7 +320,14 @@ Bank.prototype.sortAccounts = function(){
     let sort = this.accounts.sort((a,b) => b.balance - a.balance)
     return sort
 }
-
+Bank.prototype.bankReport = function(){
+    return `
+    My Bank: ${this.bankName}
+    Customers: ${this.accounts.length}
+    Total Money: ${this.totalMoney()}
+    Richest Customer: ${this.richestCustomer().name}
+    `
+}
 
 
 const bank = new Bank('First Bank')
@@ -332,7 +339,8 @@ bank.openAccount(user3)
 // console.log(bank.totalMoney())
 // console.log(bank.accounts)
 // console.log(bank.customersWithMoreThan(5000))
-console.log(bank.sortAccounts())
+// console.log(bank.sortAccounts())
+console.log(bank.bankReport())
 
 
 
