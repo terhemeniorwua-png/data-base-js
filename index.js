@@ -173,6 +173,7 @@ class BankAccount{
         this.name = name
         this.pin = pin
         this.balance = balance
+        this.transaction = []
         this.generateAccNum()
     }
 }
@@ -189,6 +190,11 @@ BankAccount.prototype.deposit = function(amount){
     } catch(e){
          e
  }
+//  let transaction ={
+//     type: 
+//  }
+
+
  this.balance += amount
  this.message = `${amount} successfully deposited to your account`
 }
@@ -340,7 +346,45 @@ bank.openAccount(user3)
 // console.log(bank.accounts)
 // console.log(bank.customersWithMoreThan(5000))
 // console.log(bank.sortAccounts())
-console.log(bank.bankReport())
+// console.log(bank.bankReport())
+
+
+// ===========================================================
+// Inventory store class
+
+
+class Store{
+    constructor(){
+        this.items = []
+    }
+}
+Store.prototype.addItem = function(name, price, quantity){
+    let object = {
+        name:name,
+        price:price,
+        quantity:quantity
+    }
+    this.items.push(object)
+}
+Store.prototype.totalValue = function(){
+    let res = this.items.reduce((total, val) => total += (val.quantity * val.price))
+    return res
+}
+
+
+
+
+let store = new Store()
+store.addItem('Bread', 5000, 3)
+store.addItem('Chair', 15000, 2)
+store.addItem('Mope', 1000, 5)
+console.log(store.totalValue())
+// console.log(store.items)
+
+
+
+
+
 
 
 
