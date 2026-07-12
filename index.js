@@ -256,12 +256,13 @@ BankAccount.prototype.accountInfo = function(){
 let user1 = new BankAccount('Philip', 1234, 2000)
 let user2 = new BankAccount('Tom', 2222, 2000)
 let user3 = new BankAccount('Tomi', 5222, 2000)
-user1.deposit(12000)
+user1.deposit(6000)
+user3.deposit(12000)
 user2.changePin(2222, 2323)
 user2.changePin(2323, 1111)
 user1.changePin(1234, 1111)
 user2.changePin(1111, 9089)
-user1.withdraw(7000, 1111)
+// user1.withdraw(7000, 1111)
 // user1.transfer(user2, 2500, 1234)
 // console.log(user2.checkBalance(9089))
 // user2.accountInfo()
@@ -314,7 +315,10 @@ Bank.prototype.richestCustomer = function(){
 }
 Bank.prototype.customersWithMoreThan = function(amount){
     return this.accounts.filter(acc => acc.balance >amount)
-
+}
+Bank.prototype.sortAccounts = function(){
+    let sort = this.accounts.sort((a,b) => b.balance - a.balance)
+    return sort
 }
 
 
@@ -327,7 +331,9 @@ bank.openAccount(user3)
 // console.log(bank.richestCustomer())
 // console.log(bank.totalMoney())
 // console.log(bank.accounts)
-console.log(bank.customersWithMoreThan(1000))
+// console.log(bank.customersWithMoreThan(5000))
+console.log(bank.sortAccounts())
+
 
 
 
