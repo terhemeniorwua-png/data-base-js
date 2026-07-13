@@ -196,7 +196,13 @@ BankAccount.prototype.deposit = function(amount){
 
 
  this.balance += amount
- this.message = `${amount} successfully deposited to your account`
+
+ let history = `type: Deposit
+ amount: ${amount}
+ balanceAfter: ${this.balance}
+ date: ${Date()}`
+
+ this.transaction.push(history)
 }
 
 BankAccount.prototype.withdraw = function(amount, pin){
@@ -215,7 +221,13 @@ BankAccount.prototype.withdraw = function(amount, pin){
          e
  } 
  this.balance -= amount
- this.message = `${amount} successfully withdrawn from your account`
+ 
+  let history = `type: Withdrawal
+ amount: ${amount}
+ balanceAfter: ${this.balance}
+ date: ${Date()}`
+
+ this.transaction.push(history)
 }
 
 BankAccount.prototype.transfer = function(receiver, amount, pin){
@@ -228,6 +240,13 @@ BankAccount.prototype.transfer = function(receiver, amount, pin){
     this.message= `You have successully transferred ${amount} to ${receiver}`
     receiver.deposit(amount)
     receiver.message=  `You have received ${amount} from ${this.name}`
+
+     let history = `type: Transfer
+ amount: ${amount}
+ balanceAfter: ${this.balance}
+ date: ${Date()}`
+
+ this.transaction.push(history)
 } 
 BankAccount.prototype.changePin =function(oldPin, newPin){
     let resetPin = String(newPin)
@@ -268,11 +287,14 @@ user2.changePin(2222, 2323)
 user2.changePin(2323, 1111)
 user1.changePin(1234, 1111)
 user2.changePin(1111, 9089)
-// user1.withdraw(7000, 1111)
-// user1.transfer(user2, 2500, 1234)
+user2.deposit(27000, 9089)
+user2.withdraw(27000, 9089)
+user1.withdraw(7000, 1111)
+user1.transfer(user2, 2500, 1234)
+user3.transfer(user1, 500, 5222)
 // console.log(user2.checkBalance(9089))
 // user2.accountInfo()
-// console.log(user1, user2)
+// console.log(user1, user2, user3)
 
 
 
@@ -281,6 +303,7 @@ class Bank{
     constructor(bankName){
         this.bankName = bankName
         this.accounts = []
+        this.transactions = []
     }
     openAccount(account){
         let user = this.accounts.find(acc => acc.name === account.name)
@@ -335,6 +358,9 @@ Bank.prototype.bankReport = function(){
     Richest Customer: ${richest.name} (${richest.balance})
     `
 }
+// Bank.prototype.history = function(){
+//     this.
+// }
 
 
 const bank = new Bank('First Bank')
@@ -348,6 +374,13 @@ bank.openAccount(user3)
 // console.log(bank.customersWithMoreThan(5000))
 // console.log(bank.sortAccounts())
 console.log(bank.bankReport())
+
+
+
+
+
+
+
 
 
 // ===========================================================
@@ -410,11 +443,42 @@ store.addItem('Mope', 1000, 6)
 
 
 
+// Furniture Price Calculator* 
+
+const furniture = [
+  { name: "Sofa", price: 250000 },
+  { name: "Table", price: 80000 },
+  { name: "Chair", price: 25000 },
+  { name: "Bed", price: 180000 }
+]
+
+for(let i =0; i<furniture.length; i++){
+    let per = furniture[i].price * (15/100)
+    let vat = furniture[i].price + per;
+     furniture[i].vat = vat
+}
+// console.log(furniture)
 
 
 
+// let i =1;
+// let chairs = 50
+// while(i < 50){
+//     let sales = Math.floor(Math.random() * 5)
+//     let remain = (chairs - sales);
+    
+//     let res = `Day ${i}: Sold ${sales} chairs. Remainig ${remain}`
+//     chairs = remain
 
+//     if(remain <0){
+//     break
+//     }
 
+    
+//     console.log(res)
+//     i++
+// }
+// console.log(`Out of stock in ${i} days`)
 
 
 

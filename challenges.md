@@ -503,3 +503,35 @@ totalValue() — uses .reduce() to return the total value of all inventory (pric
 filterExpensive(minPrice) — uses .filter() to return an array of item names (just the names, as strings) where price >= minPrice.
 applyDiscount(percent) — uses .map() to return a new array of items with their prices reduced by that percent (don't mutate the original items).
 mostCommonWord() — takes all the item name strings, splits them into individual words, and returns the word that appears most often across all names (ignore case). If there's a tie, return whichever word appeared first.
+
+
+
+
+
+
+
+Task 1: Furniture Price Calculator* 
+_Use a `for` loop_
+
+You run a furniture shop. You have this array of products:
+const furniture = [
+  { name: "Sofa", price: 250000 },
+  { name: "Table", price: 80000 },
+  { name: "Chair", price: 25000 },
+  { name: "Bed", price: 180000 }
+]
+*Question*: Write a `for` loop that:
+1.  Loops through the array
+2.  Adds 15% VAT to each price 
+3.  Prints: `Sofa with VAT: 287500` for each item
+
+*Task 2: Stock Counter*
+_Use a `while` loop_
+
+You have 50 chairs in stock. Each day you sell a random amount between 1-5 chairs.
+
+*Question*: Write a `while` loop that:
+1.  Keeps selling chairs until stock hits 0
+2.  Each loop: subtract a random number `Math.floor(Math.random() * 5) + 1`
+3.  Print: `Day 1: Sold 3 chairs. Remaining: 47`
+4.  At the end print: `Out of stock in X days
