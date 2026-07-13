@@ -197,10 +197,12 @@ BankAccount.prototype.deposit = function(amount){
 
  this.balance += amount
 
- let history = `type: Deposit
- amount: ${amount}
- balanceAfter: ${this.balance}
- date: ${Date()}`
+ let history = {
+    type: 'Deposit',
+    amount: amount,
+    balanceAfter: this.balance,
+    date:Date()
+  }
 
  this.transaction.push(history)
 }
@@ -222,10 +224,12 @@ BankAccount.prototype.withdraw = function(amount, pin){
  } 
  this.balance -= amount
  
-  let history = `type: Withdrawal
- amount: ${amount}
- balanceAfter: ${this.balance}
- date: ${Date()}`
+  let history = {
+    type: 'Withdraw',
+    amount: amount,
+    balanceAfter: this.balance,
+    date:Date()
+  }
 
  this.transaction.push(history)
 }
@@ -241,10 +245,12 @@ BankAccount.prototype.transfer = function(receiver, amount, pin){
     receiver.deposit(amount)
     receiver.message=  `You have received ${amount} from ${this.name}`
 
-     let history = `type: Transfer
- amount: ${amount}
- balanceAfter: ${this.balance}
- date: ${Date()}`
+      let history = {
+    type: 'Transfer',
+    amount: amount,
+    balanceAfter: this.balance,
+    date:Date()
+  }
 
  this.transaction.push(history)
 } 
@@ -275,6 +281,12 @@ BankAccount.prototype.accountInfo = function(){
     Balance: N${this.balance}`
     console.table(user)
 }
+BankAccount.prototype.showTransactions = function(type){
+    let transType = this.transaction.filter(type => type === this.transaction.type)
+    if(type == transType){
+        return this.transaction
+    }
+}
 
 
 
@@ -294,6 +306,7 @@ user1.transfer(user2, 2500, 1234)
 user3.transfer(user1, 500, 5222)
 // console.log(user2.checkBalance(9089))
 // user2.accountInfo()
+// console.log(user3.showTransactions('Transfer'))
 // console.log(user1, user2, user3)
 
 
@@ -324,7 +337,7 @@ Bank.prototype.closeAccount = function(accountNumber){
     // }
     for(let i=0; i<this.accounts.length; i++){
         if(this.accounts[i] === accountNumber ){
-            delete this.accounts.splice(i, 1)
+             this.accounts.splice(i, 1)
             return;
         }
     }
@@ -373,7 +386,7 @@ bank.openAccount(user3)
 // console.log(bank.accounts)
 // console.log(bank.customersWithMoreThan(5000))
 // console.log(bank.sortAccounts())
-console.log(bank.bankReport())
+// console.log(bank.bankReport())
 
 
 
@@ -508,12 +521,64 @@ for(let i =0; i<furniture.length; i++){
 //     return userID
 // }
 
-
-
-
-
 // getUser(30).then(user => {
 //     console.log(user)
 // }).catch('err')
+
+
+
+
+
+// ONLINE SHOPPING CLASS
+
+class Shopping{
+    constructor(id, name, price, category, stock, rating){
+        this.id = id
+        this.name = name
+        this.price = price
+        this.category = category
+        this.stock = stock
+        this.rating = rating
+        this.isAvailable()
+    }
+    updatePrice(newPrice){
+        if(newPrice < 0){
+            this.message = 'Price cannot be less than $0'
+            return;
+        }
+        this.price = newPrice
+    }
+    restock(quantity){
+         if(quantity < 0){
+            this.message = 'Quantity cannot be less than $zero'
+            return;
+        }
+        this.stock += quantity
+    }
+    isAvailable(){
+        if(this.stock != 0){
+            this.isAvailable = true;
+            return
+        }
+        this.isAvailable = false
+    }
+    displayProduct(){
+        console.log(this)
+    }
+}
+
+let pdd1 = new Shopping('100', 'Chair', 15000, 'Furniture', 50, 3)
+let pdd2 = new Shopping('101', 'Television', 85000, 'Electric Appliance', 15, 12)
+pdd1.updatePrice(22000)
+pdd1.restock(10)
+pdd1.displayProduct()
+pdd2.displayProduct()
+// console.log(pdd1)
+
+
+
+
+
+
 
 

@@ -401,6 +401,12 @@ Example
     date: "2026-07-10"
 }
 
+
+
+
+
+
+
 Create
 
 showTransactions()
@@ -510,28 +516,308 @@ mostCommonWord() — takes all the item name strings, splits them into individua
 
 
 
-Task 1: Furniture Price Calculator* 
-_Use a `for` loop_
 
-You run a furniture shop. You have this array of products:
-const furniture = [
-  { name: "Sofa", price: 250000 },
-  { name: "Table", price: 80000 },
-  { name: "Chair", price: 25000 },
-  { name: "Bed", price: 180000 }
-]
-*Question*: Write a `for` loop that:
-1.  Loops through the array
-2.  Adds 15% VAT to each price 
-3.  Prints: `Sofa with VAT: 287500` for each item
 
-*Task 2: Stock Counter*
-_Use a `while` loop_
 
-You have 50 chairs in stock. Each day you sell a random amount between 1-5 chairs.
 
-*Question*: Write a `while` loop that:
-1.  Keeps selling chairs until stock hits 0
-2.  Each loop: subtract a random number `Math.floor(Math.random() * 5) + 1`
-3.  Print: `Day 1: Sold 3 chairs. Remaining: 47`
-4.  At the end print: `Out of stock in X days
+
+
+
+
+
+Great. Based on the progress I've seen from you, I think you're ready for something closer to a real-world project rather than isolated exercises.
+
+🏆 Challenge: E-Commerce System
+
+Imagine you're building the backend logic for a simple online shopping application like Jumia or Amazon.
+
+This challenge covers almost every JavaScript concept you've learned so far.
+
+Requirements
+
+Create these classes:
+
+Product
+Cart
+Customer
+Store
+Order
+
+
+
+1. Product Class
+
+Properties:
+
+id
+name
+price
+category
+stock
+rating
+
+Methods:
+
+updatePrice(newPrice)
+
+restock(quantity)
+
+buy(quantity)
+
+isAvailable()
+
+displayProduct()
+
+Rules:
+
+Price cannot be negative.
+Stock cannot be negative.
+Buying more than available stock should fail.
+
+
+
+
+2. Customer Class
+
+Properties
+
+name
+email
+wallet
+cart
+orders
+
+Methods
+
+deposit(amount)
+
+addToCart(product, quantity)
+
+removeFromCart(product)
+
+checkout()
+
+viewOrders()
+
+walletBalance()
+
+Rules
+
+Can't add more than the available stock.
+Can't checkout if wallet isn't enough.
+Empty the cart after successful checkout.
+
+
+
+3. Cart Class
+
+Properties
+
+items
+
+Each item should look like
+
+{
+    product,
+    quantity
+}
+
+Methods
+
+addItem()
+
+removeItem()
+
+updateQuantity()
+
+clearCart()
+
+cartTotal()
+
+displayCart()
+
+
+
+
+4. Order Class
+
+Each order stores
+
+orderId
+customer
+products
+total
+date
+status
+
+Status
+
+Pending
+Processing
+Delivered
+Cancelled
+
+Methods
+
+cancel()
+
+deliver()
+
+processing()
+5. Store Class
+
+Properties
+
+storeName
+
+products
+
+customers
+
+orders
+
+Methods
+
+addProduct()
+
+removeProduct()
+
+findProduct()
+
+searchProduct()
+
+productsByCategory()
+
+registerCustomer()
+
+richestCustomer()
+
+mostExpensiveProduct()
+
+sortProductsByPrice()
+
+sortProductsByRating()
+
+totalInventoryValue()
+
+generateReport()
+Inventory Value
+
+Calculate
+
+price × stock
+
+for every product.
+
+Use
+
+reduce()
+Search
+
+Search should work like
+
+store.searchProduct("lap")
+
+It should find
+
+Laptop
+
+Hint:
+
+Think about
+
+includes()
+toLowerCase()
+Checkout Process
+
+When
+
+customer.checkout()
+
+it should
+
+Calculate total.
+Check wallet balance.
+Deduct money.
+Reduce stock.
+Create an Order.
+Save it in both the customer and the store.
+Clear the cart.
+Transaction History
+
+Every customer should have
+
+history
+
+Example
+
+{
+    type: "Purchase",
+    amount: 35000,
+    date: "...",
+    orderId: ...
+}
+Bonus 1
+
+Generate IDs automatically.
+
+Example
+
+P001
+P002
+P003
+
+ORD001
+ORD002
+
+CUS001
+
+No duplicate IDs.
+
+Bonus 2
+
+Create
+
+store.statistics()
+
+Return
+
+{
+    totalProducts,
+    totalCustomers,
+    totalOrders,
+    totalRevenue,
+    highestSellingCategory,
+    averageProductPrice
+}
+Bonus 3 (Regex)
+
+Validate emails.
+
+john@gmail.com ✔
+
+johngmail.com ❌
+
+john@ ❌
+Bonus 4 (Async)
+
+Fetch products from
+
+https://dummyjson.com/products
+
+Using
+
+async/await
+
+Add them into your store automatically.
+
+Wrap everything with
+
+try...catch
+Rules
+❌ No global arrays.
+❌ No duplicate code.
+❌ Don't store values that can always be calculated (unless you have a good reason).
+✅ Use classes only (don't mix constructor functions and prototype assignments this time).
+✅ Use map, filter, find, reduce, sort, and some where appropriate.
+✅ Keep each class focused on its own responsibility.
