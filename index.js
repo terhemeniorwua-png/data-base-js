@@ -470,24 +470,24 @@ for(let i =0; i<furniture.length; i++){
 
 
 
-// let i =1;
-// let chairs = 50
-// while(i < 50){
-//     let sales = Math.floor(Math.random() * 5)
-//     let remain = (chairs - sales);
+let i =1;
+let chairs = 50
+while(i < 50){
+    let sales = Math.floor(Math.random() * 5)
+    let remain = (chairs - sales);
     
-//     let res = `Day ${i}: Sold ${sales} chairs. Remainig ${remain}`
-//     chairs = remain
+    let res = `Day ${i}: Sold ${sales} chairs. Remainig ${remain}`
+    chairs = remain
 
-//     if(remain <0){
-//     break
-//     }
+    if(remain ==0){
+    break
+    }
 
     
-//     console.log(res)
-//     i++
-// }
-// console.log(`Out of stock in ${i} days`)
+    console.log(res)
+    i++
+}
+console.log(`Out of stock in ${i} days`)
 
 
 
