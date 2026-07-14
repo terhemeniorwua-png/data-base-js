@@ -1,7 +1,31 @@
 
 
 const products = []
-let cart ={}
+let cart = []
+
+
+// CART CLASS
+
+class Cart{
+    constructor(product, quantity){
+        this.product = product
+        this.quantity = quantity
+
+        cart.push(this)
+    }
+    static addItem(product, quantity){
+        let prod = products.find(prod => prod.name === product)
+        if(!prod) return;
+         if(prod.isAvailable != true || prod.stock === 0) {
+            this.message = 'Sorry, The product is not available'
+            return;
+        } 
+
+        new Cart(product, quantity)
+    }
+}
+
+
 // CUSTOMER CLASS
 
 class Customer{
@@ -19,29 +43,19 @@ class Customer{
         this.wallet += amount
     }
     addToCart(product, quantity){
-        let prod = products.find(prod => prod.name === product)
-        if(!prod) return;
+        
         if(quantity <= 0){
             this.message = `Invalid quantity`
             return;
         }
 
-        if(prod.isAvailable != true || prod.stock === 0) {
-            this.message = 'Sorry, The product is not available'
-            return;
-
-        } else if(quantity > prod.stock) {
+       if(quantity > product.stock) {
             this.message = `Sorry, the quantity inputed is more than available quantity`
             return;
         }
         this.cart += quantity
-
-        if(cart[prod.name] === undefined){
-            cart[prod.name] = 0;
-            cart[prod.name] = quantity
-        } else{
-            cart[prod.name] += quantity
-        }
+        Cart.addItem(product, quantity)
+       
     }
     removeFromCart(product, quantity){
         if(!cart[product]){
@@ -57,13 +71,12 @@ class Customer{
     checkOut(){
         let totalPrice = 0;
         let order = 0;
-        for(let [key, value] of Object.entries(cart)){
-            for(let i= 0; i<products.length; i++){
-                if(key === products[i].name){
-                   let price= value*products[i].price
-                    totalPrice += price
-                    products[i].stock -= value
-                    order += value
+        for(let i =0; i<cart.length; i++){
+            for(let j = 0; j<products.length; j++){
+                if(cart[i].product === products[j].name){
+                    totalPrice += cart[i].quantity * products[j].price
+                    products[j].stock -= cart[i].quantity
+                    order += cart[i].quantity
                 }
             }
         }
@@ -74,8 +87,9 @@ class Customer{
          this.wallet -= totalPrice
          this.orders = order
           this.cart = 0
-         cart = {}
-    }
+         cart = []
+        }
+    
     viewOrders(name){
         if(name !== this.name){
             return `Not a customer? SingUp`
@@ -174,24 +188,17 @@ pdd1.restock(10)
 
 let cust1 = new Customer('John', 'john@gmail.com')
 cust1.deposit(1800000)
-cust1.addToCart('Television', 10)
-cust1.addToCart('Chair', 42)
-cust1.addToCart('Chair', 5)
-// cust1.removeFromCart('Television', 4)
-// cust1.removeFromCart('Chair', 40)
+cust1.addToCart('Chair', 45)
+cust1.addToCart('Television', 5)
 cust1.checkOut()
-cust1.addToCart('Chair', 12)
-cust1.checkOut()
+// console.log(cust1.viewOrders('John'))
+// console.log(cust1.viewBalance('John'))
+console.log(cust1)
 
-
-console.log(cust1.viewOrders('John'))
-console.log(cust1.viewBalance('John'))
-// console.log(cust1)
-
-// console.log(cart)
+console.log(cart)
 
 
 
-// console.log(products)
+console.log(products)
 
 
