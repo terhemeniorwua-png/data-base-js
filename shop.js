@@ -56,14 +56,14 @@ class Customer{
     }
     checkOut(){
         let totalPrice = 0;
-        
+        let order = 0;
         for(let [key, value] of Object.entries(cart)){
             for(let i= 0; i<products.length; i++){
                 if(key === products[i].name){
                    let price= value*products[i].price
                     totalPrice += price
                     products[i].stock -= value
-                    this.orders += value
+                    order += value
                 }
             }
         }
@@ -72,8 +72,20 @@ class Customer{
             return;
          }
          this.wallet -= totalPrice
+         this.orders = order
           this.cart = 0
          cart = {}
+    }
+    viewOrders(name){
+        if(name !== this.name){
+            return `Not a customer? SingUp`
+        }
+        return this.orders
+    }
+    viewBalance(name){
+        if(name === this.name){
+            return `Your balance as of ${Date()} is ${this.wallet}`
+        }
     }
   
 }
@@ -161,16 +173,22 @@ pdd1.restock(10)
 
 
 let cust1 = new Customer('John', 'john@gmail.com')
-cust1.deposit(20)
+cust1.deposit(1800000)
 cust1.addToCart('Television', 10)
 cust1.addToCart('Chair', 42)
 cust1.addToCart('Chair', 5)
 // cust1.removeFromCart('Television', 4)
 // cust1.removeFromCart('Chair', 40)
 cust1.checkOut()
-console.log(cust1)
+cust1.addToCart('Chair', 12)
+cust1.checkOut()
 
-console.log(cart)
+
+console.log(cust1.viewOrders('John'))
+console.log(cust1.viewBalance('John'))
+// console.log(cust1)
+
+// console.log(cart)
 
 
 
