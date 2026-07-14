@@ -23,7 +23,7 @@ class Staff{
 
         staffs.push(this)
     }
-     signUp(name, id, pass){
+     static signUp(name, id, pass){
         let staff = staffs.find(staff => staff.id === id)
         if(staff){
              console.log('Staff already exist, Login!')
@@ -31,12 +31,8 @@ class Staff{
         }
          new Staff(name, id, pass)
     }
-      logIn(id, pass){
-        let staff = staffs.find(staff => {
-            if(id === staff.id && pass === staff.password){
-                return staf
-            }
-        })
+     static logIn(id, pass){
+        let staff = staffs.find(staff => id === staff.id && pass === staff.password)
          if(!staff){
              console.log('Not a Staff? Visit admin to sing up!')
             return;
@@ -44,10 +40,7 @@ class Staff{
         console.log(staff)
     }
     studentDisplay(id, clas){
-         let staff = staffs.find(staff => {
-            if(id === staff.id && clas === staff.class){
-                return staf
-            }})
+         let staff = staffs.find(staff => id === staff.id && clas === staff.class)
             if(!staff){
                 console.log('You are not authorized to access this feature')
                 return;
@@ -57,10 +50,7 @@ class Staff{
             console.log(stud)
         }
         performanceUpdate(staffID, clas, studID, score1, score2, score3){
-            let staff = staffs.find(staff => {
-            if(staffID === staff.id && clas === staff.class){
-                return staf
-            }})
+            let staff = staffs.find(staff => staffID === staff.id && clas === staff.class)
             if(!staff){
                 console.log('You are not authorized to access this feature')
                 return;
@@ -78,11 +68,10 @@ class Staff{
         }
 }
 
-let staf = new Staff
-staf.signUp('Phil', 101, 232)
-// staf.logIn(111, 4443)
-// staf.studentDisplay(215, '500')
-// console.log(staffs)
+let staff1= Staff.signUp('Phil', 101, 232)
+Staff.logIn(111, 4443)
+// staff1.studentDisplay(215, '500')
+console.log(staffs)
 
 
 
@@ -103,7 +92,7 @@ class Student{
         students.push(this)
         
     }
-    signUp(name, id, pass, clas, email){
+     static signUp(name, id, pass, clas, email){
         let student = students.find(student => student.id === id)
         if(student){
              console.log('Student already exist, Login!')
@@ -111,12 +100,8 @@ class Student{
         }
          new Student(name, id, pass, clas, email)
     }
-    logIn(id, pass){
-        let student = students.find(student => {
-            if(id === student.id && pass === student.password){
-                return student
-            }
-        })
+    static logIn(id, pass){
+        let student = students.find(student => id === student.id && pass === student.password)
          if(!student){
              console.log('Not a student? SingUp!')
             return;
@@ -124,11 +109,8 @@ class Student{
         console.log(student)
     }
     checkPerf(id, pass){
-           let student = students.find(student => {
-            if(id === student.id && pass === student.password){
-                return student
-            }
-        })
+           let student = students.find(
+            student => id === student.id && pass === student.password)
          if(!student){
              console.log('Not a student? SingUp!')
             return;
@@ -138,11 +120,12 @@ class Student{
     changeInfo(id, oldPass, newPass){
         let passLength = String(newPass)
 
-         let student = students.find(student => {
-            if(id === student.id && oldPass === student.password){
-                return student
-            } })
-
+         let student = students.find(
+            student => id === student.id && oldPass === student.password)
+            if(!student){
+                console.log('Invalid login')
+                return;
+            }
 
             if(passLength.length != 4){
                 console.log('Password must be 4 characters')
@@ -156,23 +139,23 @@ class Student{
 
 
 
-let schStudent = new Student
-schStudent.signUp('Fray', 104, 4444, '500', 'pl@gmail.com')
-schStudent.signUp('Peter', 101, 8787, '200', 'peter@gmail.com')
-schStudent.signUp('Peter', 103, 4787, '300', 'peter@gmail.com')
-schStudent.signUp('Wisdom', 102, 9012, '100', 'wisdom@gmail.com')
-// schStudent.logIn(104, 4444)
-// schStudent.checkPerf(101, 8787)
+ 
+let student1 = Student.signUp('Fray', 104, 4444, '500', 'pl@gmail.com')
+let student2 = Student.signUp('Peter', 101, 8787, '200', 'peter@gmail.com')
+let student3 = Student.signUp('Peter', 103, 4787, '300', 'peter@gmail.com')
+let student4 = Student.signUp('Wisdom', 102, 9012, '100', 'wisdom@gmail.com')
+
+
+
+staff1.performanceUpdate(212, '100', 102, 70, 64, 70)
+staff1.performanceUpdate(211, '200', 101, 60, 64, 90)
+staff1.performanceUpdate(213, '300', 103, 89, 54, 80)
+staff1.performanceUpdate(214, '400', 102, 69, 74, 91)
+staff1.performanceUpdate(215, '500', 105, 78, 54, 67)
+staff1.performanceUpdate(214, '500', 104, 58, 54, 97)
+staff1.studentDisplay(215, '500')
+
+// Student.checkPerf(102, 9012)
+Student.logIn(104, 4444)
 // schStudent.changeInfo(101, 8787, 4435)
-
-
-staf.performanceUpdate(212, '100', 102, 70, 64, 70)
-staf.performanceUpdate(211, '200', 101, 60, 64, 90)
-staf.performanceUpdate(213, '300', 103, 89, 54, 80)
-staf.performanceUpdate(214, '400', 102, 69, 74, 91)
-// staf.performanceUpdate(215, '500', 105, 78, 54, 67)
-staf.performanceUpdate(214, '500', 104, 58, 54, 97)
-// staf.studentDisplay(215, '500')
-
-
-console.log(students)
+// console.log(students)

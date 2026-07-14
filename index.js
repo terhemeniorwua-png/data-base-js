@@ -484,10 +484,10 @@ while(i < 50){
     }
 
     
-    console.log(res)
+    // console.log(res)
     i++
 }
-console.log(`Out of stock in ${i} days`)
+// console.log(`Out of stock in ${i} days`)
 
 
 
@@ -520,133 +520,6 @@ console.log(`Out of stock in ${i} days`)
 // getUser(30).then(user => {
 //     console.log(user)
 // }).catch('err')
-
-
-
-
-
-// ONLINE SHOPPING CLASS
-
-class Shopping{
-    products = []
-    constructor(id, name, price, category, stock, rating){
-        this.id = id
-        this.name = name
-        this.price = price
-        this.category = category
-        this.stock = stock
-        this.rating = rating
-        this.isAvailable()
-
-        this.products.push(this)
-    }
-    updatePrice(newPrice){
-        if(newPrice < 0){
-            this.message = 'Price cannot be less than $0'
-            return;
-        }
-        this.price = newPrice
-    }
-    restock(quantity){
-         if(quantity < 0){
-            this.message = 'Quantity cannot be less than $zero'
-            return;
-        }
-        this.stock += quantity
-    }
-    buy(quantity){
-       if(quantity < 0) {
-        this.message = `Quantity cannot be less than zero`
-        return;
-       }else if(this.stock == 0 || this.isAvailable != true){
-        this.message = `Sorry, the product is out of stock`
-        return;
-       } else if(quantity > this.stock){
-        this.message = `Quantity is more than available stock`
-       }
-        let price = this.price * quantity
-        this.wallet -= price
-        this.stock -= quantity
-
-    }
-    isAvailable(){
-        if(this.stock != 0){
-            this.isAvailable = true;
-            return
-        }
-        this.isAvailable = false
-    }
-    displayProduct(){
-        console.log(this)
-    }
-
-}
-
-
-
-
-
-let shop = new Shopping()
-let pdd1 = new Shopping('100', 'Chair', 15000, 'Furniture', 50, 3)
-let pdd2 = new Shopping('101', 'Television', 85000, 'Electric Appliance', 15, 12)
-// pdd1.updatePrice(22000)
-// pdd1.restock(10)
-// pdd1.displayProduct()
-// pdd2.displayProduct()
-
-console.log(pdd1.buy(1))
-console.log(pdd1)
-// console.log(shop.products)
-
-
-
-// CUSTOMER CLASS
-
-class Customer{
-    constructor(name, email, wallet, cart, orders){
-        this.name = name
-        this.email = email
-        this.wallet= wallet
-        this.cart = cart
-        this.orders= orders
-    }
-    deposit(amount){
-        if(amount < 0) {
-            this.message = "Amount can't be less than $0"
-        } 
-        this.wallet += amount
-    }
-    addToCart(product, quantity){
-        let prod = shop.products.find(prod => prod.name === product)
-        if(!prod) return;
-        if(quantity < 0){
-            this.message = `Invalid quantity`
-        }
-
-        if(this.isAvailable != true || this.stock === 0) {
-            this.message = 'Sorry, The product is not available'
-
-        } else if(quantity > this.stock) {
-            this.message = `Sorry, the quantity inputed is more than available quantity`
-        }
-        this.cart += quantity
-    }
-
-}
-
-// let cust1 = new Customer('John', 'john@gmail.com', 20000, 0, 0)
-// cust1.deposit(200)
-// cust1.addToCart('Chair', 5)
-// console.log(cust1)
-
-
-
-
-
-
-
-
-
 
 
 
