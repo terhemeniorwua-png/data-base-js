@@ -23,6 +23,16 @@ class Cart{
 
         new Cart(product, quantity)
     }
+    static removeItem(product, quantity){
+        let pdd = cart.find(prd => prd.product === product)
+        pdd.quantity -= quantity
+    }
+    static updateQuantity(product, quantity){
+        let pdd = cart.find(prd => prd.product === product)
+        if(pdd){
+          return pdd.quantity += quantity
+        }
+    }
 }
 
 
@@ -43,7 +53,11 @@ class Customer{
         this.wallet += amount
     }
     addToCart(product, quantity){
-        
+        let pdd = cart.find(prd => prd.product === product)
+        if(pdd){
+            Cart.updateQuantity(product, quantity)
+            return;
+        }
         if(quantity <= 0){
             this.message = `Invalid quantity`
             return;
@@ -58,15 +72,21 @@ class Customer{
        
     }
     removeFromCart(product, quantity){
-        if(!cart[product]){
+        if(quantity <0) {
+            this.message = `Quantity cannot be less than zero`
+            return;
+        };
+        let pdd = cart.find(prd => prd.product === product)
+        if(!pdd){
             this.message = `Product not found`
             return };
-        if(quantity <0 || quantity > cart[product]){
+        if(quantity > pdd.quantity){
             this.message = `Out of range`
             return 
         };
-        this.cart -= quantity
-        cart[product] -= quantity
+         this.cart -= quantity
+        Cart.removeItem(product, quantity)
+        
     }
     checkOut(){
         let totalPrice = 0;
@@ -190,7 +210,10 @@ let cust1 = new Customer('John', 'john@gmail.com')
 cust1.deposit(1800000)
 cust1.addToCart('Chair', 45)
 cust1.addToCart('Television', 5)
-cust1.checkOut()
+cust1.addToCart('Television', 15)
+cust1.removeFromCart('Chair', 35)
+cust1.removeFromCart('Television', 3)
+// cust1.checkOut()
 // console.log(cust1.viewOrders('John'))
 // console.log(cust1.viewBalance('John'))
 console.log(cust1)
@@ -199,6 +222,6 @@ console.log(cart)
 
 
 
-console.log(products)
+// console.log(products)
 
 
