@@ -22,6 +22,7 @@ class Staff{
         this.name = name
         this.id = String(id)
         this.password = String(pass)
+        this.status = false
     }
 
      static signUp(name, id, pass){
@@ -40,6 +41,7 @@ class Staff{
              console.log('Not a Staff? Visit admin to sing up!')
             return;
         }
+        this.status = true
         console.log(`Welcome back ${staff.name}`)
         console.log(staff)
     }
@@ -49,7 +51,10 @@ class Staff{
                 console.log('You are not authorized to access this feature')
                 return;
             }
-            
+             if(this.status == true){
+            console.log('Login to continue') 
+            return;
+        }
             let stud = students.filter(student => student.class === clas)
             console.log(stud)
         }
@@ -59,6 +64,10 @@ class Staff{
                 console.log('You are not authorized to access this feature')
                 return;
             }
+             if(this.status == true){
+            console.log('Login to continue') 
+            return;
+        }
              let stud = students.find(student => {
             if(studID === student.id){
                 return student
@@ -84,14 +93,14 @@ class Student{
         this.class = clss
         this.email = email
         this.performance={}
-
+        this.status = false
 
     }
      static signUp(name, id, pass, clas, email){
         let student = students.find(student => student.id === id)
         if(student){
              console.log('Student already exist, Login!')
-            return
+            return;
         }
          let newStudent = new Student(name, id, pass, clas, email)
          students.push(newStudent)
@@ -102,6 +111,7 @@ class Student{
              console.log('Not a student? SingUp!')
             return;
         }
+        this.status = true
         console.log(student)
     }
     checkPerf(id, pass){
@@ -109,6 +119,10 @@ class Student{
             student => id === student.id && pass === student.password)
          if(!student){
              console.log('Not a student? SingUp!')
+            return;
+        }
+        if(this.status == true){
+            console.log('Login to continue') 
             return;
         }
         console.log(student.performance)
@@ -121,6 +135,10 @@ class Student{
                 console.log('Invalid login')
                 return;
             }
+             if(this.status == true){
+            console.log('Login to continue') 
+            return;
+        }
         let passLength = String(newPass)
 
             if(passLength.length !== 4){
@@ -146,7 +164,7 @@ let student4 = Student.signUp('Wisdom', 102, 9012, '100', 'wisdom@gmail.com')
 
 
 
-let staff1= Staff.signUp('Phil', 101, 2324)
+// let staff1= Staff.signUp('Phil', 101, 2324)
 // Staff.logIn(211, 4443)
 // Staff.studentDisplay(211, '200')
 // console.log(staffs)
@@ -164,6 +182,8 @@ let staff1= Staff.signUp('Phil', 101, 2324)
 // Staff.performanceUpdate(214, '400', 102, 69, 74, 91)
 // Staff.performanceUpdate(215, '500', 105, 78, 54, 67)
 // Staff.performanceUpdate(214, '500', 104, 58, 54, 97)
-// Staff.studentDisplay('215', '500')
+// Staff.studentDisplay(211, '200')
+
+
 
 
