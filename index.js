@@ -494,32 +494,9 @@ while(i < 50){
 
 
 
-
-// async function users(){
-//     let userDB = await fetch('https://dummyjson.com/users');
-//     let users= await userDB.json()
-//     // let userD = users.users.map(user => {
-//     //     return user.email
-//     // })
-//     return users
+// async function userList() {
+//     fetch('https://dummyjson.com/users')
+//     let 
 // }
 
-// async function getUser(id){
-//     let userID = await users(id).users.map(user =>{
-//         if(user.id === id){
-//             return user
-//         }
-//     })
-      
-  
-
-
-//     return userID
-// }
-
-// getUser(30).then(user => {
-//     console.log(user)
-// }).catch('err')
-
-
-
+// setInterval(() => console.log('Hello'), 2000)

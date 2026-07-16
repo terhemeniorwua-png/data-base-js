@@ -524,7 +524,6 @@ mostCommonWord() — takes all the item name strings, splits them into individua
 
 
 
-
 Great. Based on the progress I've seen from you, I think you're ready for something closer to a real-world project rather than isolated exercises.
 
 🏆 Challenge: E-Commerce System

@@ -20,7 +20,6 @@ class Cart{
             this.message = 'Sorry, The product is not available'
             return;
         } 
-
         new Cart(product, quantity)
     }
     static removeItem(product, quantity){
@@ -32,6 +31,17 @@ class Cart{
         if(pdd){
           return pdd.quantity += quantity
         }
+    }
+    static cartTotal(){
+        return cart.reduce((total, val) => total += val.quantity, 0)
+    }
+    static displayCart(){
+        console.log(cart, Cart.cartTotal())
+         
+        
+    }
+    static clearCart(){
+        cart = []
     }
 }
 
@@ -107,7 +117,7 @@ class Customer{
          this.wallet -= totalPrice
          this.orders = order
           this.cart = 0
-         cart = []
+          Cart.clearCart()
         }
     
     viewOrders(name){
@@ -191,6 +201,25 @@ class Shopping{
 }
 
 
+// ORDER CLASS
+
+class Order{
+    constructor(id, product, status){
+        this.id = id
+        this.name = this.name
+        this.product = product
+        this.total;
+        this.status = status
+    }
+    
+}
+
+
+
+
+
+
+
 
 
 
@@ -216,9 +245,10 @@ cust1.removeFromCart('Television', 3)
 // cust1.checkOut()
 // console.log(cust1.viewOrders('John'))
 // console.log(cust1.viewBalance('John'))
-console.log(cust1)
+// Cart.displayCart()
+// console.log(cust1)
 
-console.log(cart)
+// console.log(cart)
 
 
 

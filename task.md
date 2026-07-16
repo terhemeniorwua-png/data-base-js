@@ -49,3 +49,31 @@ To be marked correctly on this section, you must demonstrate (in a short comment
 log is fine) the specific point in your code where access is checked and denied for out of class
 data.
 Part D: D
+
+
+
+
+
+
+
+
+
+
+
+
+
+Task: Stringify then Parse a Nested Object
+You have an object called car with the following structure:
+
+brand (string)
+model (string)
+year (number)
+owner — a nested object with name and city
+features — an array of strings
+
+Write plain JS (console or Node) that does the following:
+
+Convert car into a formatted JSON string using JSON.stringify() with 2-space indentation, and log the result.
+Take that JSON string and convert it back into an object using JSON.parse().
+Log the parsed object's owner.name value, and the second item in its features array.
+Compare car.brand to the parsed object's brand using ===, and log whether they match.

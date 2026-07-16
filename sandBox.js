@@ -1,35 +1,38 @@
 'use strict'
 
 
+
   let staffs = [
         {name:'Joe', id:211, password:4443, class:'200', email:'joe@gmail.com'},
         {name:'Mut', id:212, password:6390, class:'100', email:'joe@gmail.com'},
         {name:'Mattew', id:213, password:4523, class:'300', email:'joe@gmail.com'},
         {name:'Charles', id:214, password:4534, class:'400', email:'joe@gmail.com'},
-        {name:'Lamel', id:215, password:5344, class:'500', email:'joe@gmail.com'}
+        
+// 
     ]
 
    let students = [
         {name:'Tom', id:115, class:'500', email:'joe@gmail.com', performance:{}}
     ]
 
+    
 
 class Staff{
     constructor(name, id, pass){
         this.name = name
         this.id = id
         this.password = pass
-        
-
-        staffs.push(this)
     }
+
      static signUp(name, id, pass){
         let staff = staffs.find(staff => staff.id === id)
         if(staff){
              console.log('Staff already exist, Login!')
-            return
+            return;
         }
-         new Staff(name, id, pass)
+        let newStaff= new Staff(name, id, pass)
+         staffs.push(newStaff)
+         console.log('Sign Up successful, Login!')
     }
      static logIn(id, pass){
         let staff = staffs.find(staff => id === staff.id && pass === staff.password)
@@ -37,9 +40,10 @@ class Staff{
              console.log('Not a Staff? Visit admin to sing up!')
             return;
         }
+        console.log(`Welcome back ${staff.name}`)
         console.log(staff)
     }
-    studentDisplay(id, clas){
+    static studentDisplay(id, clas){
          let staff = staffs.find(staff => id === staff.id && clas === staff.class)
             if(!staff){
                 console.log('You are not authorized to access this feature')
@@ -49,7 +53,7 @@ class Staff{
             let stud = students.filter(student => student.class === clas)
             console.log(stud)
         }
-        performanceUpdate(staffID, clas, studID, score1, score2, score3){
+        static performanceUpdate(staffID, clas, studID, score1, score2, score3){
             let staff = staffs.find(staff => staffID === staff.id && clas === staff.class)
             if(!staff){
                 console.log('You are not authorized to access this feature')
@@ -68,13 +72,6 @@ class Staff{
         }
 }
 
-let staff1= Staff.signUp('Phil', 101, 232)
-Staff.logIn(111, 4443)
-// staff1.studentDisplay(215, '500')
-console.log(staffs)
-
-
-
 
 
 
@@ -89,7 +86,7 @@ class Student{
         this.performance={}
 
 
-        students.push(this)
+        
         
     }
      static signUp(name, id, pass, clas, email){
@@ -98,7 +95,8 @@ class Student{
              console.log('Student already exist, Login!')
             return
         }
-         new Student(name, id, pass, clas, email)
+         let newStudent =new Student(name, id, pass, clas, email)
+         students.push(newStudent)
     }
     static logIn(id, pass){
         let student = students.find(student => id === student.id && pass === student.password)
@@ -147,15 +145,25 @@ let student4 = Student.signUp('Wisdom', 102, 9012, '100', 'wisdom@gmail.com')
 
 
 
-staff1.performanceUpdate(212, '100', 102, 70, 64, 70)
-staff1.performanceUpdate(211, '200', 101, 60, 64, 90)
-staff1.performanceUpdate(213, '300', 103, 89, 54, 80)
-staff1.performanceUpdate(214, '400', 102, 69, 74, 91)
-staff1.performanceUpdate(215, '500', 105, 78, 54, 67)
-staff1.performanceUpdate(214, '500', 104, 58, 54, 97)
-staff1.studentDisplay(215, '500')
+
+
+
+let staff1= Staff.signUp('Phil', 101, 2324)
+// Staff.logIn(211, 4443)
+Staff.studentDisplay(211, '200')
+// console.log(staffs)
+
 
 // Student.checkPerf(102, 9012)
-Student.logIn(104, 4444)
+// Student.logIn(211, 4443)
 // schStudent.changeInfo(101, 8787, 4435)
 // console.log(students)
+
+
+// Staff.performanceUpdate(212, '100', 102, 70, 64, 70)
+Staff.performanceUpdate(211, '200', 101, 60, 64, 90)
+// Staff.performanceUpdate(213, '300', 103, 89, 54, 80)
+// Staff.performanceUpdate(214, '400', 102, 69, 74, 91)
+// Staff.performanceUpdate(215, '500', 105, 78, 54, 67)
+// Staff.performanceUpdate(214, '500', 104, 58, 54, 97)
+// Staff.studentDisplay(215, '500')
