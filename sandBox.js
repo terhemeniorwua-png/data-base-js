@@ -6,7 +6,7 @@
         {name:'Joe', id:'211', password:'4443', class:'200', email:'joe@gmail.com'},
         {name:'Mut', id:'212', password:'6390', class:'100', email:'joe@gmail.com'},
         {name:'Mattew', id:'213', password:'4523', class:'300', email:'joe@gmail.com'},
-        {name:'Charles', id:'214', password:'4534', class:'400', email:'joe@gmail.com'},
+        {name:'Charles', id:'214', password:'4534', class:'400', email:'joe@gmail.com'}
         
 // 
     ]
@@ -18,20 +18,27 @@
     
 
 class Staff{
-    constructor(name, id, pass){
+
+    constructor(name, id, pass, email){
         this.name = name
         this.id = String(id)
         this.password = String(pass)
+        this.email = email
         this.status = false
     }
 
-     static signUp(name, id, pass){
+     static signUp(name, id, pass, email){
         let staff = staffs.find(staff => staff.id === id)
         if(staff){
              console.log('Staff already exist, Login!')
             return;
         }
-        let newStaff= new Staff(name, id, pass)
+        let emailVal = email.endsWith('@gmail.com')
+        if(!emailVal){
+            console.log('Email must end with @gmail.com')
+            return;
+        }
+        let newStaff= new Staff(name, id, pass, email)
          staffs.push(newStaff)
          console.log('Sign Up successful, Login!')
     }
@@ -51,7 +58,7 @@ class Staff{
                 console.log('You are not authorized to access this feature')
                 return;
             }
-             if(this.status == true){
+             if(this.status !== true){
             console.log('Login to continue') 
             return;
         }
@@ -64,7 +71,7 @@ class Staff{
                 console.log('You are not authorized to access this feature')
                 return;
             }
-             if(this.status == true){
+             if(this.status !== true){
             console.log('Login to continue') 
             return;
         }
@@ -102,6 +109,11 @@ class Student{
              console.log('Student already exist, Login!')
             return;
         }
+          let emailVal = email.endsWith('@gmail.com')
+        if(!emailVal){
+            console.log('Email must end with @gmail.com')
+            return;
+        }
          let newStudent = new Student(name, id, pass, clas, email)
          students.push(newStudent)
     }
@@ -121,7 +133,7 @@ class Student{
              console.log('Not a student? SingUp!')
             return;
         }
-        if(this.status == true){
+        if(this.status !== true){
             console.log('Login to continue') 
             return;
         }
@@ -135,7 +147,7 @@ class Student{
                 console.log('Invalid login')
                 return;
             }
-             if(this.status == true){
+             if(this.status !== true){
             console.log('Login to continue') 
             return;
         }
@@ -154,36 +166,39 @@ class Student{
 
 
  
-let student1 = Student.signUp('Fray', 104, 4444, '500', 'pl@gmail.com')
-let student2 = Student.signUp('Peter', 101, 8787, '200', 'peter@gmail.com')
-let student3 = Student.signUp('Peter', 103, 4787, '300', 'peter@gmail.com')
-let student4 = Student.signUp('Wisdom', 102, 9012, '100', 'wisdom@gmail.com')
+ Student.signUp('Fray', 104, 4444, '500', 'pl@gmail.com')
+Student.signUp('Peter', 101, 8787, '200', 'peter@gmail.com')
+Student.signUp('Peter', 103, 4787, '300', 'peter@gmail.com')
+Student.signUp('Wisdom', 102, 9012, '100', 'wisdom@gmail.com')
 
 
 
 
 
 
-// let staff1= Staff.signUp('Phil', 101, 2324)
-// Staff.logIn(211, 4443)
-// Staff.studentDisplay(211, '200')
+Staff.signUp('Phil', 201, 2324, 'ter@gmail.com')
+Staff.logIn('211', '4443')
+// Staff.studentDisplay('211', '200')
 // console.log(staffs)
 
 
-// Student.checkPerf(102, 9012)
-// Student.logIn(211, 4443)
-// schStudent.changeInfo(101, 8787, 4435)
+// Student.logIn('104', '4444')
+// Student.changeInfo(101, 8787, 4435)
 // console.log(students)
 
 
-// Staff.performanceUpdate(212, '100', 102, 70, 64, 70)
-// Staff.performanceUpdate(211, '200', 101, 60, 64, 90)
-// Staff.performanceUpdate(213, '300', 103, 89, 54, 80)
-// Staff.performanceUpdate(214, '400', 102, 69, 74, 91)
-// Staff.performanceUpdate(215, '500', 105, 78, 54, 67)
-// Staff.performanceUpdate(214, '500', 104, 58, 54, 97)
+Staff.performanceUpdate('201', '100', 102, 70, 64, 70)
+Staff.performanceUpdate('211', '200', 101, 60, 64, 90)
+Staff.performanceUpdate('213', '300', 103, 89, 54, 80)
+Staff.performanceUpdate('214', '400', 102, 69, 74, 91)
+Staff.performanceUpdate('215', '500', 105, 78, 54, 67)
+Staff.performanceUpdate('214', '500', 104, 58, 54, 97)
 // Staff.studentDisplay(211, '200')
 
 
+Student.checkPerf('102', '9012')
 
 
+// async function users(){
+//     let user = fetch('https://dummyjson.com/users')
+// }

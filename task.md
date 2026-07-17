@@ -77,3 +77,30 @@ Convert car into a formatted JSON string using JSON.stringify() with 2-space ind
 Take that JSON string and convert it back into an object using JSON.parse().
 Log the parsed object's owner.name value, and the second item in its features array.
 Compare car.brand to the parsed object's brand using ===, and log whether they match.
+
+
+
+
+Assignment: Cancelling a Fetch Request with AbortController
+
+Create an asynchronous function that sends a request to the following API:
+
+https://jsonplaceholder.typicode.com/posts
+
+Use an AbortController to cancel the request if it takes more than 2 seconds to complete.
+
+If the request is successful:
+
+Convert the response to JSON.
+Display the total number of posts in the console.
+
+If the request is cancelled:
+
+Display the message:
+Request was cancelled.
+
+If any other error occurs:
+
+Display the error message in the console.
+
+Finally, call your asynchronous function to execute it.

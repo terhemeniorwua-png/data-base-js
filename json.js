@@ -36,17 +36,61 @@ const car = {
   ]
 };
 let toJsonString = JSON.stringify(car, null, 2)
-console.log(toJsonString)
+// console.log(toJsonString)
 
 let toJSObj = JSON.parse(toJsonString)
-let owner = car['owner']['name'];
-let secFeature = car['features']
-.map((val, indx) => {
-    if(indx === 1)
-         console.log(val)
+let owner = toJSObj['owner']['name'];
+let secFeature = toJSObj.features[1]
+
+// console.log(secFeature)
+// console.log(owner)
+
+
+// let res = car.brand === toJSObj.brand
+// console.log(res)
+
+
+async function fet() {
+let [student, courses, grades] = await Promise.all([
+  fetch("student.json"),
+  fetch("courses.json"),
+  fetch("grades.json")
+]);
+// return await (student, courses, grades).json()
+// console.log(res)
+const stud = student.json();
+const cours = courses.json();
+const grad = grades.json()
+return [stud, cours, grad]
+}
+
+fet().then(res =>{
+  console.log(res)
 })
-console.log(owner)
 
 
-let res = toJsonString.brand === toJSObj.brand
-console.log(res)
+
+
+// async function apiRequest(){
+//   try{
+//     // let abort = new AbortController();
+//     // if(setTimeout(
+//     //   function(){
+        
+//     //   }, 2000)){
+//     //     abort.abort('Request was cancelled.')
+//       }
+
+
+//     let request = await fetch('https://jsonplaceholder.typicode.com/posts');
+//       if(!request.ok){
+//         throw new Error('Something went wrong')
+//       }
+//     let call =await request.text()
+//       console.log(call)
+//   } catch(e){
+//     console.log(e.message)
+//   }
+// }
+  
+// apiRequest()
