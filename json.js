@@ -20,27 +20,27 @@
 
 
 
-const car = {
-  brand: "Toyota",
-  model: "Corolla",
-  year: 2022,
-  owner: {
-    name: "Philip",
-    city: "Benue"
-  },
-  features: [
-    "Air Conditioning",
-    "Bluetooth",
-    "Backup Camera",
-    "Cruise Control"
-  ]
-};
-let toJsonString = JSON.stringify(car, null, 2)
-// console.log(toJsonString)
+// const car = {
+//   brand: "Toyota",
+//   model: "Corolla",
+//   year: 2022,
+//   owner: {
+//     name: "Philip",
+//     city: "Benue"
+//   },
+//   features: [
+//     "Air Conditioning",
+//     "Bluetooth",
+//     "Backup Camera",
+//     "Cruise Control"
+//   ]
+// };
+// let toJsonString = JSON.stringify(car, null, 2)
+// // console.log(toJsonString)
 
-let toJSObj = JSON.parse(toJsonString)
-let owner = toJSObj['owner']['name'];
-let secFeature = toJSObj.features[1]
+// let toJSObj = JSON.parse(toJsonString)
+// let owner = toJSObj['owner']['name'];
+// let secFeature = toJSObj.features[1]
 
 // console.log(secFeature)
 // console.log(owner)
@@ -50,47 +50,59 @@ let secFeature = toJSObj.features[1]
 // console.log(res)
 
 
+// Reading a local file
+
+import { readFile } from "node:fs/promises"
+
 async function fet() {
-let [student, courses, grades] = await Promise.all([
-  fetch("student.json"),
-  fetch("courses.json"),
-  fetch("grades.json")
+  
+try{
+  let [student, courses, grades] = await Promise.all([
+  readFile("student.json", "utf8"),
+  readFile("courses.json", "utf8"),
+  readFile("grades.json", "utf8")
 ]);
-// return await (student, courses, grades).json()
-// console.log(res)
-const stud = student.json();
-const cours = courses.json();
-const grad = grades.json()
+
+const stud = JSON.parse(student);
+const cours = JSON.parse(courses);
+const grad = JSON.parse(grades)
 return [stud, cours, grad]
+} catch(e){
+  console.log(e.message)
+}
+}
+// fet().then(res => console.log(res))
+
+
+
+// Cancelling a fetch Request
+
+async function apiRequest(timout = 2000){
+    let abort = new AbortController();
+    setTimeout(
+      function(){
+        abort.abort(new Error('Request was cancelled'))
+      }, timout)
+  try{
+  
+    let request = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      signal: abort.signal
+    });
+    // cancel(timout)
+    
+    let call = await request.json()
+      console.log(call)
+
+      let numOfPosts = 0;
+      call.forEach(val => {
+        if(val.body){
+          numOfPosts++
+        }
+      });
+      console.log(`The total number of posts is: ${numOfPosts}`)
+  } catch(e){
+    console.log(e.message)
+  }
 }
 
-fet().then(res =>{
-  console.log(res)
-})
-
-
-
-
-// async function apiRequest(){
-//   try{
-//     // let abort = new AbortController();
-//     // if(setTimeout(
-//     //   function(){
-        
-//     //   }, 2000)){
-//     //     abort.abort('Request was cancelled.')
-//       }
-
-
-//     let request = await fetch('https://jsonplaceholder.typicode.com/posts');
-//       if(!request.ok){
-//         throw new Error('Something went wrong')
-//       }
-//     let call =await request.text()
-//       console.log(call)
-//   } catch(e){
-//     console.log(e.message)
-//   }
-// }
-  
-// apiRequest()
+apiRequest()
