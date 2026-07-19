@@ -820,3 +820,146 @@ Rules
 ✅ Use classes only (don't mix constructor functions and prototype assignments this time).
 ✅ Use map, filter, find, reduce, sort, and some where appropriate.
 ✅ Keep each class focused on its own responsibility.
+
+
+
+===========================================================================================
+
+
+
+Based on the topics you've been practicing (async/await, fetch, Promise.all(), JSON, classes, and now fs), here's a project that's challenging but still appropriate for your current level.
+
+Task: Student Report Manager
+
+Create a Node.js program that reads three JSON files and generates a report.
+
+Step 1: Create these files
+
+students.json
+
+[
+  {
+    "id": 1,
+    "name": "Philip"
+  },
+  {
+    "id": 2,
+    "name": "Mary"
+  },
+  {
+    "id": 3,
+    "name": "John"
+  }
+]
+
+courses.json
+
+[
+  {
+    "studentId": 1,
+    "course": "JavaScript"
+  },
+  {
+    "studentId": 1,
+    "course": "Node.js"
+  },
+  {
+    "studentId": 2,
+    "course": "HTML"
+  },
+  {
+    "studentId": 3,
+    "course": "CSS"
+  },
+  {
+    "studentId": 3,
+    "course": "React"
+  }
+]
+
+grades.json
+
+[
+  {
+    "studentId": 1,
+    "grade": 80
+  },
+  {
+    "studentId": 1,
+    "grade": 95
+  },
+  {
+    "studentId": 2,
+    "grade": 70
+  },
+  {
+    "studentId": 3,
+    "grade": 88
+  },
+  {
+    "studentId": 3,
+    "grade": 92
+  }
+]
+Step 2
+
+Using fs/promises, read all three files at the same time using Promise.all().
+
+Step 3
+
+For each student, display:
+
+Name: Philip
+Courses: JavaScript, Node.js
+Average Grade: 87.5
+-----------------------
+
+Do this for every student.
+
+Step 4
+
+Create a function that finds the student with the highest average grade.
+
+Expected output:
+
+Best Student: John
+Average: 90
+Step 5
+
+Save the report into a file called report.txt using fs.writeFile().
+
+The file should look something like:
+
+===== STUDENT REPORT =====
+
+Name: Philip
+Courses: JavaScript, Node.js
+Average Grade: 87.5
+
+Name: Mary
+Courses: HTML
+Average Grade: 70
+
+Name: John
+Courses: CSS, React
+Average Grade: 90
+Rules
+✅ Use async/await
+✅ Use Promise.all()
+✅ Use fs/promises
+✅ Use map()
+✅ Use filter()
+✅ Use find() where appropriate
+✅ Use reduce() to calculate average grades
+❌ Don't use AI to write the code (unless you're completely stuck)
+Bonus Challenges
+
+If you finish, try these:
+
+Sort students by highest average grade.
+Display the number of courses each student is taking.
+Add a letter grade (A, B, C, D, F) based on the average.
+Save the report as both report.txt and report.json.
+Allow the user to enter a student's name and display only that student's report.
+
+This task will give you practice with file handling, asynchronous programming, arrays, and data processing—all skills you'll use frequently in Node.js applications.

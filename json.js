@@ -71,18 +71,18 @@ return [stud, cours, grad]
   console.log(e.message)
 }
 }
-// fet().then(res => console.log(res))
+fet().then(res => console.log(res))
 
 
 
 // Cancelling a fetch Request
 
-async function apiRequest(timout = 2000){
+async function apiRequest(){
     let abort = new AbortController();
     setTimeout(
       function(){
         abort.abort(new Error('Request was cancelled'))
-      }, timout)
+      }, 2000)
   try{
   
     let request = await fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -91,7 +91,7 @@ async function apiRequest(timout = 2000){
     // cancel(timout)
     
     let call = await request.json()
-      console.log(call)
+      // console.log(call)
 
       let numOfPosts = 0;
       call.forEach(val => {
